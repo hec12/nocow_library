@@ -1,0 +1,163 @@
+\documentclass[fleqn]{jarticle}
+
+\usepackage{geometry} % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper, top=2.0cm, left=2.0cm, right=2.0cm, bottom=2.0cm, includehead, includefoot}                   % ... or a4paper or a5paper or ... 
+
+\usepackage{algpseudocode,algorithm}
+\usepackage{amsmath}
+\usepackage{url}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\usepackage{color}
+\usepackage{listings,jlisting}
+\usepackage{courier}
+
+\lstset{language=C++}
+\lstset{columns=fullflexible}
+\lstset{showspaces=false}
+
+\lstset{numbers=left}
+\lstset{numbersep=1zw}
+
+\lstset{basicstyle=\small\ttfamily\footnotesize}
+
+\lstset{keywordstyle={\bfseries \color[rgb]{0,0.5,0.85}}}
+\lstset{commentstyle={\color[rgb]{0.8,0.0,0}}}
+\lstset{morecomment=[l]{//}}
+\lstset{stringstyle={\bfseries f\color[rgb]{0.0,0.6,0.0}}}
+
+\lstset{frame={tb}}
+\lstset{xrightmargin=0zw}
+\lstset{xleftmargin=3zw}
+
+\begin{document}
+
+\title{Monge DP}
+\author{ヘクト}
+\maketitle
+
+\section{はじめに}
+Monge DPに必要な事項を忘れないようにするためのメモである．
+
+\section{Monge性}
+$
+二変数の関数f(i,j)が「Monge」であるとは，任意の i \le j と k \le l について
+$
+\begin{align}
+f(i,l) + f(j,k) \ge f(i,k) + f(j,l)
+\end{align}
+が成立することをいいます．Monge性はmin-max束の劣モジュラ不等式だとも言える．
+\begin{align}
+f(i,l) + f(j,k) \ge f(\min(i,j),\min(k,l)) + f(\max(i,j),\max(k,l)) = f(i,k) + f(j,l)
+\end{align}
+DPのコスト関数がMonge性を満たす時には,DPテーブルもMonge性を満たすことが知られている．
+このMonge性を利用することにより，DPを高速化できることが知られている．
+
+\section{Divide and Conquer Optimization}
+この問題は,式(\ref{divide_dp})の形の漸化式で表されて,dp[n][k]を求めたい．
+\begin{align}
+&{\rm dp}[i][j] = \min_{0\le k<j}{{\rm dp}[i-1][k]+{\rm cost}[k][j]} \label{divide_dp} 
+\end{align}
+この式は普通のDPであるため,計算量 $O(kn^2)$ で計算できる.ここでMonge性を利用する.
+式(\ref{divide_cut})を満たすC[i][j]をdp[i][j]が最小値を取るインデックスと定義する. 
+\begin{align}
+&{\rm C}[i][j] =\min_{0\le k<j}{{\rm dp}[i-1][k]+{\rm cost}[k][j]} \label{divide_cut}
+\end{align}
+Monge性より,C[i][j]は式(\ref{divide_cut_eq})の関係を満たす．
+\begin{align}
+&{\rm C}[i][j] \le {\rm C}[i][j+1]  \label{divide_cut_eq}
+\end{align}
+
+式(\ref{divide_cut_eq})の関係から,C[i][j]を分割統治法を用いることで計算量$O(kn\log{n})$で計算できる.  また,行最大値発見問題のアルゴリズムを用いることで
+計算量$O(kn)$で計算できる.
+
+\begin{lstlisting}[caption=Divide and Conquer,label=divide_code]
+int dp[kmax][nmax];
+void solve(int i,int L,int R, int optL,int optR){
+	if(L>R) return;
+	int M=(L+R)/2;
+	int optM=-1;
+	for(int k=optL;k<=optR;++k)
+		if(dp[i+1][M]>dp[i][k]+cost[k][M])
+			dp[i+1][M]=dp[i][k]+cost[k][M]	,optM=k;
+	solve(i,L,M,optL,optM);
+	solve(i,M,R,optM,optR);
+	return;
+}
+
+int main(void){
+	for(int i=0;i<=k;++i)
+		for(int j=0;j<=n;++j)
+			dp[i][j]=inf;
+	dp[0][0]=0;
+	for(int i=0;i<k;++i) solve(i,0,n,0,n);
+	cout << dp[k][n] << endl;
+	return 0;
+}
+\end{lstlisting}
+
+\section{Knuth Optimization}
+最適二分探索木問題を解くために,Knuthが開発した手法らしい．この問題は,式(\ref{knuth_dp})の形の漸化式で表される．
+\begin{align}
+&{\rm dp}[i][j] = {\rm cost}[i][j] + \min_{i<k<j}{{\rm dp}[i][k]+{\rm dp}[k][j]} \label{knuth_dp}
+\end{align}
+このDPは区間DPであるため,計算量$O(n^3)$で計算できる. ここでMonge性を利用する. 
+式(\ref{knuth_cut})を満たすC[i][j]をdp[i][j]が最小値を取るインデックスと定義する. 
+\begin{align}
+&{\rm C}[i][j] =\argmin_{i<k<j}{{\rm dp}[i][k]+{\rm dp}[k][j]} \label{knuth_cut}
+\end{align}
+Monge性より,C[i][j]は式(\ref{knuth_cut_eq})の関係を満たす．
+\begin{align}
+&{\rm C}[i][j-1] \le {\rm C}[i][j] \le {\rm C}[i+1][j]  \label{knuth_cut_eq}
+\end{align}
+
+式(\ref{knuth_cut_eq})の関係から,幅が小さい方向からDPテーブルを埋めることにより,計算量$O(n^2)$で計算できる.  \\
+
+\begin{lstlisting}[caption=Divide and Conquer,label=divide_code]
+int dp[nmax][nmax];
+int C[nmax][nmax];
+
+int main(void){
+	for(int i=0;i<=k;++i)
+		for(int j=0;j<=n;++j)
+			dp[i][j]=inf;
+	for(int i=0;i<n;++i) dp[i][i]=0,C[i][i]=i;
+	
+	for(int d=2;d<=n;++d){
+		for(int i=0;i+d-1<n;++i){
+			int L=i,R=i+d-1;
+			int idx=C[L][R-1];
+			for(int j=C[L][R-1];j<=C[L+1][R];++j){
+				if(dp[L][R]>dp[L][j]+dp[j+1][R]+cost[L][R])
+					dp[L][R]=dp[L][j]+dp[j+1][R]+cost[L][R],idx=j;	
+			}
+			C[L][R]=idx;
+		}
+	}
+	cout << dp[0][n-1] << endl;
+	return 0;
+}
+\end{lstlisting}
+
+
+\section{参考問題}
+KUPC 2012 J Sashimi \\
+JAG Summer 2013 Day2 D \\
+JAG Autumn 2015 K \\
+
+
+\begin{thebibliography}{9}
+\bibitem{English} Letterfrequency(English),ALGORITMY.NET \\
+\url{http://en.algoritmy.net/article/40379/Letter-frequency-English}
+\bibitem{Hist} デジタル情報の処理と認識('12) 15章・鈴木一史 \\
+\url{http://compsci.world.coocan.jp/OUJ/2012PR/pr_15_a.pdf}
+\bibitem{Alice} Alice's Adventures in Wonderland(1866),Lewis Carroll \\
+\url{https://en.wikisource.org/wiki/Alice%27s_Adventures_in_Wonderland_(1866)/Chapter_1}
+\end{thebibliography}
+
+\end{document}

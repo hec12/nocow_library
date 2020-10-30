@@ -1,0 +1,28 @@
+
+
+
+
+数論
+
+Miller–Rabin
+2047
+1373653
+25326001
+3215031751, 2152302898747, 3474749660383, 341550071728321, 341550071728321, 3825123056546413051, 3825123056546413051, 3825123056546413051, 318665857834031151167461, 3317044064679887385961981
+
+if n < 2,047, it is enough to test a = 2;
+if n < 1,373,653, it is enough to test a = 2 and 3;
+if n < 25,326,001, it is enough to test a = 2, 3, and 5;
+if n < 3,215,031,751, it is enough to test a = 2, 3, 5, and 7;
+if n < 2,152,302,898,747, it is enough to test a = 2, 3, 5, 7, and 11;
+if n < 3,474,749,660,383, it is enough to test a = 2, 3, 5, 7, 11, and 13;
+if n < 341,550,071,728,321, it is enough to test a = 2, 3, 5, 7, 11, 13, and 17.
+
+Using the work of Feitsma and Galway enumerating all base 2 pseudoprimes in 2010, this was extended (see OEIS A014233), with the first result later shown using different methods in Jiang and Deng:[10]
+
+if n < 3,825,123,056,546,413,051, it is enough to test a = 2, 3, 5, 7, 11, 13, 17, 19, and 23.
+if n < 18,446,744,073,709,551,616 = 264, it is enough to test a = 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, and 37.
+Sorenson and Webster[11] verify the above and calculate precise results for these larger than 64-bit results:
+
+if n < 318,665,857,834,031,151,167,461, it is enough to test a = 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, and 37.
+if n < 3,317,044,064,679,887,385,961,981, it is enough to test a = 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, and 41.

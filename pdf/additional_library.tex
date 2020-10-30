@@ -1,0 +1,72 @@
+%\documentclass[9pt,a4paper,fleqn]{jarticle}
+\documentclass[9pt,twocolumn,a4paper,landscape]{extarticle}
+\usepackage{geometry} % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper, top=0cm, left=1cm, right=1cm, bottom=1.0cm, includehead, includefoot}                   % ... or a4paper or a5paper or ... 
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{amsmath, amsfonts}
+\usepackage{subfigure, subfloat}
+\usepackage{cite}
+\usepackage{fancyvrb}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage[cache=false]{minted}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newmintedfile[includecpp]{cpp}{
+    linenos,
+    mathescape,
+    numbersep=5pt,
+    frame=lines,
+    framesep=2mm,
+    tabsize=2
+}
+
+\title{Nocow Library (additional2)}
+\author{ヘクト}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{comment}
+\begin{center}
+\begin{minipage}{4cm}
+	\begin{verbatim}
+	　　ＡＡ
+	　⊂・・⊃▼⌒ヽ
+	　(ω＿) )　 ●|〜*
+	　　　ＵＵ〜ーＵ
+	\end{verbatim}
+\end{minipage}
+\end{center}
+\end{comment}
+
+%\tableofcontents
+
+
+\section{Aho-Corasick}
+\includecpp{../src/string/AHO_CORASICK.cpp}
+
+\section{Heavy-Light-Decomposition}
+\includecpp{../src/graph/HLD.cpp}
+
+\section{線形連立方程式のメモ}
+
+$\mathbf{Ax} = \mathbf{b}$ を $\mathbf{x}$ について解くとき，$\mathbf{A} \in \mathbb{R}^{n \times m},\mathbf{b} \in \mathbb{R}^n$
+
+
+\begin{itemize}
+	\item 決定系 $\text{rank}(\mathbf{A}) = n = m$　解が唯一
+	\item 優決定系 $\text{rank}(\mathbf{A}) = m < n$ 解がなし
+	\item 劣決定系 $\text{rank}(\mathbf{A}) = n < m$ 解が複数
+	\item ランク落ち $\text{rank}(\mathbf{A}) < \min(n,m)$ 線形従属になっている方程式を取り除くと、上の3つに収束
+\end{itemize}
+
+\end{document}

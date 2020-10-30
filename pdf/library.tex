@@ -1,0 +1,115 @@
+%\documentclass[9pt,a4paper,fleqn]{jarticle}
+\documentclass[9pt,twocolumn,a4paper,landscape]{extarticle}
+\usepackage{geometry} % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper, top=0cm, left=1.0cm, right=0.5cm, bottom=0.25cm, includehead, includefoot}                   % ... or a4paper or a5paper or ... 
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{amsmath, amsfonts}
+\usepackage{subfigure, subfloat}
+\usepackage{cite}
+\usepackage{fancyvrb}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage[cache=false]{minted}
+\usepackage{color}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\definecolor{tabgray}{gray}{0.80}
+
+\newmintedfile[includebash]{bash}{
+    linenos,
+    mathescape,
+    numbersep=5pt,
+    frame=lines,
+    framesep=2mm
+}
+
+
+\newmintedfile[includecpp]{cpp}{
+    linenos,
+    mathescape,
+    showtabs,
+    tab = |\ ,
+    tabcolor = tabgray,
+    breaklines=true,
+    numbersep=5pt,
+    frame=lines,
+    framesep=2mm,
+    tabsize=2
+}
+
+\newmintedfile[includevim]{vim}{
+    linenos,
+    mathescape,
+    numbersep=5pt,
+    frame=lines,
+    framesep=2mm
+}
+
+\newmintedfile[includehtml]{html}{
+    linenos,
+    mathescape,
+    showtabs,
+    tab = |\ ,
+    tabcolor = tabgray,
+    breaklines=true,
+    numbersep=5pt,
+    frame=lines,
+    framesep=2mm
+}
+
+\title{Tokyo University of Agriculture and Technology - TUAT Nocow Library}
+\author{ヘクト}
+\date{\today}
+
+
+\makeatletter
+\def\section{\@startsection {section}{1}{\z@}{0.4\Cvs}{0.1\Cvs}{\Large\bf}}
+\def\subsection{\@startsection {subsection}{1}{\z@}{-1.5ex plus -1ex minus -.2ex}{2.3 ex plus .2ex}{\large\bf}}
+\def\subsubsection{\@startsection {subsubsection}{1}{\z@}{-2.5ex plus -1ex minus -.2ex}{.3 ex plus .2ex}{\large\bf}}
+\makeatother
+
+\pagestyle{fancy}
+\lhead{Tokyo University of Agriculture and Technology - TUAT: nocow}
+\chead{}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\begin{document}
+%\maketitle
+
+\begin{comment}
+\begin{center}
+\begin{minipage}{4cm}
+	\begin{verbatim}
+	　　ＡＡ
+	　⊂・・⊃▼⌒ヽ
+	　(ω＿) )　 ●|〜*
+	　　　ＵＵ〜ーＵ
+	\end{verbatim}
+\end{minipage}
+\end{center}
+\end{comment}
+
+
+%\tableofcontents
+
+%\input{./tex/prepare.tex}
+\input{./tex/template.tex}
+\input{./tex/utility.tex}
+\input{./tex/graph.tex}
+\input{./tex/dynamic_programming.tex}
+\input{./tex/data_structure.tex}
+\input{./tex/string.tex}
+\input{./tex/number_theory.tex}
+\input{./tex/geometry.tex}
+
+\end{document}

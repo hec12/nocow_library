@@ -1,0 +1,71 @@
+%\documentclass[9pt,a4paper,fleqn]{jarticle}
+\documentclass[9pt,onecolumn,a4paper,landscape]{extarticle}
+\usepackage{geometry} % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper, top=0cm, left=1cm, right=1cm, bottom=1.0cm, includehead, includefoot}                   % ... or a4paper or a5paper or ... 
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{amsmath, amsfonts}
+\usepackage{subfigure, subfloat}
+\usepackage{cite}
+\usepackage{fancyvrb}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage[cache=false]{minted}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newmintedfile[includebash]{bash}{
+    linenos,
+    mathescape,
+    numbersep=5pt,
+    frame=lines,
+    framesep=2mm
+}
+
+\newmintedfile[includecpp]{cpp}{
+    linenos,
+    mathescape,
+    numbersep=5pt,
+    frame=lines,
+    framesep=2mm,
+    tabsize=4
+}
+
+\newmintedfile[includevim]{vim}{
+    linenos,
+    mathescape,
+    numbersep=5pt,
+    frame=lines,
+    framesep=2mm
+}
+
+
+\title{Nocow Library}
+\author{ヘクト}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\begin{minipage}{4cm}
+	\begin{verbatim}
+	　　ＡＡ
+	　⊂・・⊃▼⌒ヽ
+	　(ω＿) )　 ●|〜*
+	　　　ＵＵ〜ーＵ
+	\end{verbatim}
+\end{minipage}
+\end{center}
+
+
+\tableofcontents
+
+\input{./tex/geometry.tex}
+
+\end{document}

@@ -1,0 +1,24 @@
+# .bashrc
+ * `setxkbmap -option ctrl:nocaps`
+
+# compile option
+ * `-std=c++1y -O2 -Wall -Wshadow -D_GLIBCXX_DEBUG -g`
+
+# gdb
+
+gdbcmd
+```
+r
+bt
+```
+
+ * `gdb a.out -x gdbcmd`
+
+ * `echo -ne "r\nbt" | gdb ./a.out 2>&1 | grep -n2 $(basename `pwd`).cpp`
+
+
+# test.sh
+ * `/home/icpc-trial/1012/test.sh`
+
+# vimrc
+ * `~/.vimrc`

@@ -1,0 +1,31 @@
+\section{動的計画法}
+
+\subsection{Convex hull trick}
+次の性質を満たす漸化式の計算を$\mathcal{O}(n^2)$から$\mathcal{O}(n)$に高速化
+\begin{equation}
+\text{dp}[i]=\min_{0\le j<i}{\text{dp}[j]+\text{a}[j]*\text{x}[i]+\text{b}[j]} 
+\end{equation}
+
+\includecpp{../src/dynamic_programming/CHT.cpp}
+
+\subsection{Monge性}
+コスト関数が次の条件を満たしているかに注意して使用すること
+Quadrangle inequality 
+
+Monotonicity:
+
+\subsubsection{Divide and Conquer Optimization}
+次の性質を満たす漸化式の計算を$\mathcal{O}(n^2)$から$\mathcal{O}(n)$に高速化
+\begin{equation}
+\text{dp}[i][j] = \min_{0\le k<j}{\text{dp}[i-1][k]+\text{cost}[k][j]} 
+\end{equation}
+
+
+\includecpp{../src/dynamic_programming/DIVIDE_AND_CONQUER.cpp}
+
+\subsubsection{Knuth Optimization}
+\begin{equation}
+\text{dp}[i][j] = \min_{i<k<j}{\text{dp}[i][k]+\text{dp}[k][j]}+\text{cost}[i][j]
+\end{equation}
+
+\includecpp{../src/dynamic_programming/KNUTH_OPTIMIZATION.cpp}

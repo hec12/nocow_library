@@ -1,0 +1,45 @@
+\section{幾何}
+
+\subsection{注意事項}
+\begin{itemize}
+\setlength{\parskip}{0cm} % 段落間
+\setlength{\itemsep}{0cm} % 項目間
+\item sgn関数の定義はちゃんと写す・istream を使う時は pの代入を忘れない
+\item 交点を求める前に交差判定が必要 iss(a,b) ill(a,b) == parallel(a,b)
+\item angleの定義には気をつける
+\item complexの比較関数はnamespace stdの中で書く
+\end{itemize}
+
+\subsection{ベクトル}
+\includecpp{../src/geometry/VECTOR.cpp}
+
+\subsection{点集合}
+
+\subsubsection{凸包}
+\includecpp{../src/geometry/CONVEX_HULL.cpp}
+
+\subsubsection{最近点対}
+\includecpp{../src/geometry/CPP.cpp}
+
+\subsubsection{最遠点対}
+\includecpp{../src/geometry/FPP.cpp}
+
+\subsection{直線と線分}
+\includecpp{../src/geometry/LINE.cpp}
+
+\subsection{多角形}
+\includecpp{../src/geometry/POLYGON.cpp}
+
+\subsection{円}
+\includecpp{../src/geometry/CIRCLE.cpp}
+
+%\subsection{最小包含円}
+
+\subsection{線分アレンジメント}
+\includecpp{../src/geometry/SEGMENT_ARRANGEMENT.cpp}
+
+\subsection{円アレンジメント}
+\includecpp{../src/geometry/CIRCLE_ARRANGEMENT.cpp}
+
+\subsection{ボロノイ図}
+\includecpp{../src/geometry/VORONOI.cpp}

@@ -1,0 +1,63 @@
+\section{数学}
+
+\subsection{素数判定}
+\includecpp{../src/number_theory/prime.cpp}
+
+\begin{comment}
+\subsection{GCD/LCM} 
+\includecpp{../src/number_theory/GCDLCM.cpp}
+\end{comment}
+
+\subsection{EXTGCD 中国剰余定理} 
+\includecpp{../src/number_theory/chinese_remainder_easy.cpp}
+
+\subsection{中国剰余定理} 
+\includecpp{../src/number_theory/CHINESE_REMAINDER.cpp}
+
+
+\subsection{オイラーの$\phi$関数}
+\begin{equation}
+\phi(n) = n \prod_{k=1}^{d}{\dfrac{p_{k}-1}{p_k}}
+\end{equation}
+
+\subsection{メビウスの反転公式}
+\includecpp{../src/number_theory/MOBIUS_FUNCTION.cpp}
+
+
+\subsection{高速ゼータ・メビウス変換}
+\includecpp{../src/number_theory/FZT_FMT.cpp}
+
+\subsection{行列} 
+\includecpp{../src/number_theory/MATRIX.cpp}
+\subsubsection{連立一次方程式} 
+\includecpp{../src/number_theory/LINEAR_EQUATION.cpp}
+%\subsubsection{行列式}
+%\includecpp{../src/number_theory/DETERMINANT.cpp}
+
+\subsection{ハンガリアン法}
+\includecpp{../src/number_theory/HANGARIAN.cpp}
+
+\subsection{基底変換}
+
+\subsubsection{高速フーリエ変換}
+\includecpp{../src/number_theory/FFT.cpp}
+
+\subsubsection{高速剰余変換} 
+\includecpp{../src/number_theory/NTT.cpp}
+
+\subsubsection{高速アダマール変換} 
+\includecpp{../src/number_theory/FHT.cpp}
+
+\subsection{ラグランジュ補間} 
+\includecpp{../src/number_theory/LAGRANGE_INTERPOLATION.cpp}
+
+\subsection{公式集}
+
+\begin{itemize}
+\setlength{\parskip}{0cm} % 段落間
+\setlength{\itemsep}{0cm} % 項目間
+\item フェルマーの小定理: 素数$p$，任意の整数$x$に対し，$x^p \equiv x \pmod{p}$
+\item 中国剰余定理: $k$個の整数$m_i$がどの2つも互いに素ならば，任意に与えられる$k$個の整数$a_i$に対し、$x \equiv a_i \pmod{m_i}$である$x$が一意に定まる．
+\item ポリアの数え上げ定理: すべてのパターンをちょうど同じ回数だけ数え上げ，重複回数で割ることで数え上げが可能
+\item シンプソン公式: 数値積分の公式 $\frac{b-a}{6}\left[ f(a)+4f(\frac{a+b}{2})+f(b) \right]$ 本来は近似値だが，$f(x)$が二次以下であれば厳密値が得られる． 
+\end{itemize}
